@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { WARLEDGER_DATA, Counter, TimelineItem, DamageItem, Correction, Position } from '../data/damage';
 import { Github, ExternalLink, AlertTriangle, CheckCircle, Info, Menu, X, ChevronDown } from 'lucide-react';
 import WarLedgerAssistant from './WarLedgerAssistant';
+import VideoGallery from './VideoGallery';
 
 const fmt = (n: number, unit = '') => {
   if (typeof n !== 'number') return n;
@@ -36,7 +37,7 @@ const actorClasses: Record<string, string> = {
 };
 
 export default function WarLedger() {
-  const [counters, setCounters] = useState(WARLEDGER_DATA.counters);
+  const [counters, setCounters] = useState<Record<string, Counter>>(WARLEDGER_DATA.counters);
   const [activeDamageTab, setActiveDamageTab] = useState('humanitarian');
   const [correctionFilter, setCorrectionFilter] = useState('all');
 
@@ -154,7 +155,7 @@ export default function WarLedger() {
         </div>
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border">
-          {Object.entries(counters).map(([key, c]) => (
+          {Object.entries(counters).map(([key, c]: [string, Counter]) => (
             <div key={key} className="bg-bg p-8 hover:bg-bg-secondary transition-colors">
               <div className="font-mono text-[10px] font-bold tracking-widest text-ink-tertiary uppercase mb-3">
                 {c.label}
@@ -169,6 +170,9 @@ export default function WarLedger() {
           ))}
         </div>
       </section>
+
+      {/* VIDEO GALLERY */}
+      <VideoGallery />
 
       {/* DAMAGE BREAKDOWN */}
       <section id="damage" className="px-6 md:px-10 py-20 border-b border-border">
