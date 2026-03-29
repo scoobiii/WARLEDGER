@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { WARLEDGER_DATA, Counter, TimelineItem, DamageItem, Correction, Position } from '../data/damage';
 import { Github, ExternalLink, AlertTriangle, CheckCircle, Info, Menu, X, ChevronDown } from 'lucide-react';
+import WarLedgerAssistant from './WarLedgerAssistant';
 
 const fmt = (n: number, unit = '') => {
   if (typeof n !== 'number') return n;
@@ -430,6 +431,7 @@ export default function WarLedger() {
           </div>
         </div>
       </footer>
+      <WarLedgerAssistant />
     </div>
   );
 }
